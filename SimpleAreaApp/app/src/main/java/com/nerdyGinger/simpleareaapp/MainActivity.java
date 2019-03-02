@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,14 +20,18 @@ public class MainActivity extends AppCompatActivity {
     public void calculateClick(View view) {
         EditText heightBox = findViewById(R.id.hBox);
         EditText widthBox = findViewById(R.id.wBox);
+        int area = 0;
 
-        Integer height = Integer.parseInt(heightBox.getText().toString());
-        Integer width = Integer.parseInt(widthBox.getText().toString());
-
-        int area = height * width;
+        try {
+            Integer height = Integer.parseInt(heightBox.getText().toString());
+            Integer width = Integer.parseInt(widthBox.getText().toString());
+            area = height * width;
+        } catch (Exception ex) {
+            Toast.makeText(this, "Please enter actual numbers", Toast.LENGTH_SHORT).show();
+        }
 
         TextView areaBox = findViewById(R.id.areaBox);
-        areaBox.setText(Integer.toString(area));
+        areaBox.setText("Area = " + Integer.toString(area));
     }
 
 }
